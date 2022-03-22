@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端导航</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header>
+        <form action="http://www.baidu.com/s" method="get" class="form">
+            <input type="text" class="input-a" name="wd"><button class="search-btn" type="submit"> 搜索</button>
+        </form>
+    </header>
+    <main id="app">
+        <ul>
+            <a v-for="item in urlLists" :key="item.name" :href=item.url>
+                <li>
+                    <div class="title">{{item.name}}</div>
+                    <span></span>
+                    <div class="title-url">{{item.url.split('www.')[1]?item.url.split('www.')[1]:item.url.split('https://')[1]?item.url.split('https://')[1]:tem.url}}</div>
+                </li>
+            </a>
+            <li v-on:click="say()">
+                <div class="title">+</div>
+                <div class="title-url">新增网站 </div>
+            </li>
+        </ul>
+    </main>
+    <script src="./main.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                urlLists: [{
+                    name: 'A',
+                    url: 'https://www.acfun.cn'
+                }, {
+                    name: 'B',
+                    url: 'https://www.bilibili.com'
+                }]
+            },
+            methods: {
+                say: function(message) {
+                    let url = prompt('请输入站点地址');
+                    if (url[0] !== 'h') {
+                        url = 'https://' + url
+
+                    }
+                    this.urlLists.push({
+                        name: url[0],
+                        url
+                    })
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
