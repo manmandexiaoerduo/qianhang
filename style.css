@@ -16,6 +16,9 @@ li {
 
 body {
     background: #c3c3c3;
+    background-image: url(./img/bg.jpeg);
+    background-size: cover;
+    opacity: .9;
 }
 
 .form {
@@ -51,13 +54,27 @@ main>ul>li {
     padding: 10px 30px;
     background: #fff;
     margin: 30px;
+    min-width: 65px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .title {
     font-size: 54px;
+}
+
+.del-img {
+    display: none;
+    position: absolute;
+    width: 1rem;
+    top: .5rem;
+    right: .5rem;
+}
+
+.li-content:hover .del-img {
+    display: block;
 }

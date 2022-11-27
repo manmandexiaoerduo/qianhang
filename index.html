@@ -12,14 +12,15 @@
 
 <body>
     <header>
-        <form action="http://www.baidu.com/s" method="get" class="form">
+        <form action="https://www.baidu.com/s" method="get" class="form">
             <input type="text" class="input-a" name="wd"><button class="search-btn" type="submit"> 搜索</button>
         </form>
     </header>
     <main id="app">
         <ul>
             <a v-for="item in urlLists" :key="item.name" :href=item.url>
-                <li>
+                <li class="li-content">
+                    <img src="./img/delete.png" class="del-img" v-on:click.prevent="deleteBtn(item.name)">
                     <div class="title">{{item.name}}</div>
                     <span></span>
                     <div class="title-url">{{item.url.split('www.')[1]?item.url.split('www.')[1]:item.url.split('https://')[1]?item.url.split('https://')[1]:tem.url}}</div>
@@ -56,11 +57,25 @@
                         name: url[0],
                         url
                     })
+                    return false;
+                },
+                deleteBtn: function(e) {
+                    let flag = confirm('是否删除站点？')
+                    if (flag) {
+                        let newArr = this.urlLists.filter((item) => {
+                            return item.name != e
+                        })
+                        this.urlLists = newArr;
+                    } else {
 
-                }
+                    }
+                    return false
+                },
+
             }
         })
     </script>
 </body>
+
 
 </html>
